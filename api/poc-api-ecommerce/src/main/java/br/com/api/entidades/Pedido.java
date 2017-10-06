@@ -17,31 +17,31 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="pedido")
+@Table(name = "pedido")
 public class Pedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="codigo")
-	@SequenceGenerator(name="pedido_codigo_seq", sequenceName="pedido_codigo_seq", initialValue=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="pedido_codigo_seq")
+	@Column(name = "codigo")
+	@SequenceGenerator(name= "pedido_codigo_seq", sequenceName = "pedido_codigo_seq", initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pedido_codigo_seq")
 	private Integer codigo;
 	
-	@Column(name="cliente")
+	@Column(name = "cliente")
 	private String cliente;
 	
-	@Column(name="data")
+	@Column(name = "data")
 	private Date dataPedido;
 	
-	@Column(name="telefone")
+	@Column(name = "telefone")
 	private String telefone;
 	
-	@Column(name="valor_total")
+	@Column(name = "valor_total")
 	private BigDecimal valorTotalPedido;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name="status")
+	@Column(name = "status")
 	private StatusPedidoEnum status;
 	
 	@OneToMany(mappedBy="pedido")

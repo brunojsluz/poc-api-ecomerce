@@ -15,15 +15,15 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="itens_pedido")
+@Table(name = "itens_pedido")
 public class ItemPedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="")
-	@SequenceGenerator(name="itens_pedido_codigo_seq", sequenceName="itens_pedido_codigo_seq", initialValue=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="itens_pedido_codigo_seq") 
+	@SequenceGenerator(name = "itens_pedido_codigo_seq", sequenceName = "itens_pedido_codigo_seq", initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "itens_pedido_codigo_seq") 
 	private Integer codigo;
 	
 	@ManyToOne
@@ -34,13 +34,13 @@ public class ItemPedido implements Serializable {
 	@JoinColumn(name = "codigo_item", nullable = false)
 	private Item item;
 	
-	@Column(name="valor")
+	@Column(name = "valor")
 	private BigDecimal valor;
 	
-	@Column(name="quantidade")
+	@Column(name = "quantidade")
 	private Integer quantidade;
 	
-	@Column(name="valor_total")
+	@Column(name = "valor_total")
 	private BigDecimal valorTotal;
 
 	public Integer getCodigo() {
