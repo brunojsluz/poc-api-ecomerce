@@ -11,6 +11,8 @@ CREATE TABLE pedido (
     cliente character(100) NOT NULL,
     data date NOT NULL,
     telefone character(15),
+    status character(10),
+    valor_total numeric(18,2) NOT NULL,
     CONSTRAINT pedido_pk PRIMARY KEY (codigo)
 );
 
