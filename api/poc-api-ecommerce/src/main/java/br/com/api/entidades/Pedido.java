@@ -24,7 +24,7 @@ public class Pedido implements Serializable {
 
 	@Id
 	@Column(name = "codigo")
-	@SequenceGenerator(name= "pedido_codigo_seq", sequenceName = "pedido_codigo_seq", initialValue = 1)
+	@SequenceGenerator(name = "pedido_codigo_seq", sequenceName = "pedido_codigo_seq", initialValue = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pedido_codigo_seq")
 	private Integer codigo;
 	
