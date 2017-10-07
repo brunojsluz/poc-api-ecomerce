@@ -39,15 +39,23 @@ public class ItemService {
 		Item item = dao.findByCodigo(alteraPreco.getCodigoItem());
 		
 		item.setValor(alteraPreco.getPreco());
+		
+		dao.save(item);
 	}
 	
 	public void alteraItem(ItemDTO itemDTO) {
-		
+		Item item = new ItemMapper().converterDe(itemDTO);
+		dao.save(item);
+	}
+
+	public List<ItemDTO> buscarPorDescricao(String descricao) {
+		return null;
 	}
 	
 	public void salvarItem(ItemDTO itemDTO) {
 		Item item = new ItemMapper().converterDe(itemDTO);
 		dao.save(item);
 	}
+
 
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,18 +32,22 @@ public class ItemController {
 		return service.buscarItem(codigo);
 	}
 	
+	public List<ItemDTO> buscarPorDescricao(@PathVariable("descricao") String descricao) {
+		return service.buscarPorDescricao(descricao);
+	}
+	
 	@PostMapping("/altera/preco")
-	public void alteraPrecoItem(AlteraPrecoDTO alteraPreco) {
+	public void alteraPrecoItem(@RequestBody AlteraPrecoDTO alteraPreco) {
 		service.alteraPrecoItem(alteraPreco);
 	}
 	
 	@PutMapping
-	public void alteraItem(ItemDTO itemDTO) {
+	public void alteraItem(@RequestBody ItemDTO itemDTO) {
 		service.alteraItem(itemDTO);
 	}
 	
 	@PostMapping
-	public void salvarItem(ItemDTO itemDTO) {
+	public void salvarItem(@RequestBody ItemDTO itemDTO) {
 		service.salvarItem(itemDTO);
 	}
 }
