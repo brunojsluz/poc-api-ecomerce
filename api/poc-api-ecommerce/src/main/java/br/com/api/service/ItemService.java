@@ -38,24 +38,24 @@ public class ItemService {
 	public void alteraPrecoItem(AlteraPrecoDTO alteraPreco) {
 		Item item = dao.findByCodigo(alteraPreco.getCodigoItem());
 		
-		item.setValor(alteraPreco.getPreco());
+		item.setValor(alteraPreco.getValor());
 		
 		dao.save(item);
 	}
 	
-	public void alteraItem(ItemDTO itemDTO) {
-		Item item = new ItemMapper().converterDe(itemDTO);
-		dao.save(item);
-	}
 
 	public List<ItemDTO> buscarPorDescricao(String descricao) {
-		return null;
+		List<Item> listaItem = dao.findByDescricaoContainingIgnoreCase(descricao);
+		return new ItemDTOMapper().converterDe(listaItem);
+	}
+
+	public void alteraItem(ItemDTO itemDTO) {
+		salvarItem(itemDTO);
 	}
 	
 	public void salvarItem(ItemDTO itemDTO) {
 		Item item = new ItemMapper().converterDe(itemDTO);
 		dao.save(item);
 	}
-
 
 }
