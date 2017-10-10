@@ -54,7 +54,7 @@ public class ItemController {
 	}
 	
 	@DeleteMapping
-	public void escluirItem() {
-		
+	public void escluirItem(@RequestBody ItemDTO itemDTO) {
+		service.excluirItem(itemDTO);
 	}
 }

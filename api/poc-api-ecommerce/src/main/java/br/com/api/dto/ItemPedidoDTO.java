@@ -3,18 +3,19 @@ package br.com.api.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import br.com.api.entidades.Pedido;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 public class ItemPedidoDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Integer codigo;
-	private Pedido pedido;
 	private ItemDTO item;
 	private BigDecimal valor;
 	private Integer quantidade;
 	private BigDecimal valorTotal;
+	@JsonBackReference
+	private PedidoDTO pedido;
 
 	public Integer getCodigo() {
 		return codigo;
@@ -24,11 +25,11 @@ public class ItemPedidoDTO implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public Pedido getPedido() {
+	public PedidoDTO getPedidoDTO() {
 		return pedido;
 	}
 
-	public void setPedido(Pedido pedido) {
+	public void setPedidoDTO(PedidoDTO pedido) {
 		this.pedido = pedido;
 	}
 

@@ -34,16 +34,13 @@ public class PedidoService {
 		return new PedidoDTOMapper().converterDe(pedido);
 	}
 	
-	public void buscarDetalhePedido(Integer codigo) {
-		
-	}
-	
 	public void fecharPedido(Integer codigo) {
 		Pedido pedido = pedidoDao.findByCodigo(codigo);
 		
-		pedido.setStatus(StatusPedidoEnum.FECHADO);
-		
-		pedidoDao.save(pedido);
+		if(pedido != null) {
+			pedido.setStatus(StatusPedidoEnum.FECHADO);
+			pedidoDao.save(pedido);
+		}
 	}
 	
 	public void atualizarPedido(PedidoDTO pedidoDTO) {
@@ -53,6 +50,11 @@ public class PedidoService {
 	public void salvarPedido(PedidoDTO pedidoDTO) {
 		Pedido pedido = new PedidoMapper().converterDe(pedidoDTO);
 		pedidoDao.save(pedido);
+	}
+	
+	public void excluirPedido(PedidoDTO pedidoDTO) {
+		Pedido pedido = new PedidoMapper().converterDe(pedidoDTO);
+		pedidoDao.delete(pedido);
 	}
 
 }

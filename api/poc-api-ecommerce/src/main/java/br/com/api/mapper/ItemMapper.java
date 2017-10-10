@@ -7,6 +7,10 @@ public class ItemMapper extends AbstractMapper<ItemDTO, Item> {
 
 	@Override
 	public Item converterDe(ItemDTO de) {
+		if(de == null) {
+			return null;
+		}
+		
 		Item para = new Item();
 		para.setCodigo(de.getCodigo());
 		para.setDescricao(de.getDescricao());
