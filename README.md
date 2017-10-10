@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/brunojsluz/poc-api-ecommerce.svg?branch=develop)](https://travis-ci.org/brunojsluz/poc-api-ecommerce)
+
 ## POC API ECOMMERCE
 
 ### Objetivo
