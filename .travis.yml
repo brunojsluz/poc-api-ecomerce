@@ -5,19 +5,3 @@ jdk:
 
 before_script: cd api/poc-api-ecommerce
 
-addons:
-  sonarcloud:
-    organization: "brunojsluz"
-    token:
-      secure: "0a294ea20d8dd8c05ea156cf303e77f2b0d03545"
-    branches:
-      - master
-      - development
-      
-script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent verify -DskipITs=false sonar:sonar
-
-cache:
-  directories:
-    - '$HOME/.m2/repository'
-- '$HOME/.sonar/cache'
