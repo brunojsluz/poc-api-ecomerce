@@ -32,7 +32,7 @@ public class PedidoController {
 		return service.buscarPedido(codigo);
 	}
 	
-	@GetMapping("/fecha/{codigo}")
+	@PutMapping("/fecha/{codigo}")
 	public void fecharPedido(@PathVariable("codigo") Integer codigo) {
 		service.fecharPedido(codigo);
 	}
