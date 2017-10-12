@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -44,7 +45,7 @@ public class Pedido implements Serializable {
 	@Column(name = "status")
 	private StatusPedidoEnum status;
 	
-	@OneToMany(mappedBy="pedido")
+	@OneToMany(mappedBy="pedido", cascade=CascadeType.ALL)
 	private List<ItemPedido> itensPedido;
 
 	public Integer getCodigo() {

@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import br.com.api.entidades.StatusPedidoEnum;
 
 public class PedidoDTO implements Serializable {
@@ -19,7 +17,6 @@ public class PedidoDTO implements Serializable {
 	private String telefone;
 	private BigDecimal valorTotalPedido;
 	private StatusPedidoEnum status;
-	@JsonManagedReference
 	private List<ItemPedidoDTO> itensPedido;
 
 	public Integer getCodigo() {

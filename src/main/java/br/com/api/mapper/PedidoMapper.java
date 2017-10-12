@@ -23,12 +23,22 @@ public class PedidoMapper extends AbstractMapper<PedidoDTO, Pedido> {
 		para.setStatus(de.getStatus());
 		para.setTelefone(de.getTelefone());
 		para.setValorTotalPedido(de.getValorTotalPedido());
+		
+		adicionarReferenciaPedido(para);
+		
 		return para;
 	}
 
 	private List<ItemPedido> converterItemPedido(List<ItemPedidoDTO> itensPedidoDTO) {
 		return new ItemPedidoMapper().converterDe(itensPedidoDTO);
 	}
-
+	
+	private void adicionarReferenciaPedido(Pedido para) {
+		List<ItemPedido> itensPedido = para.getItensPedido();
+		
+		for (ItemPedido itemPedido : itensPedido) {
+			itemPedido.setPedido(para);
+		}
+	}
 }
  
