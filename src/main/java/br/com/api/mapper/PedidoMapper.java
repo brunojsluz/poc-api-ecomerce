@@ -2,6 +2,8 @@ package br.com.api.mapper;
 
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import br.com.api.dto.ItemPedidoDTO;
 import br.com.api.dto.PedidoDTO;
 import br.com.api.entidades.ItemPedido;
@@ -34,11 +36,18 @@ public class PedidoMapper extends AbstractMapper<PedidoDTO, Pedido> {
 	}
 	
 	private void adicionarReferenciaPedido(Pedido para) {
+		if(para == null) {
+			return;
+		}
+		
 		List<ItemPedido> itensPedido = para.getItensPedido();
 		
-		for (ItemPedido itemPedido : itensPedido) {
-			itemPedido.setPedido(para);
+		if(CollectionUtils.isNotEmpty(itensPedido)) {
+			for (ItemPedido itemPedido : itensPedido) {
+				itemPedido.setPedido(para);
+			}
 		}
+		
 	}
 }
  

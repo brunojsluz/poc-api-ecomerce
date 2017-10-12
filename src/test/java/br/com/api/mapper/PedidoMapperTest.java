@@ -1,10 +1,12 @@
 package br.com.api.mapper;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.com.api.dto.ItemPedidoDTO;
 import br.com.api.dto.PedidoDTO;
 import br.com.api.entidades.Pedido;
 import br.com.api.entidades.StatusPedidoEnum;
@@ -41,7 +43,17 @@ public class PedidoMapperTest {
 		pedido.setStatus(StatusPedidoEnum.FECHADO);
 		pedido.setTelefone(TestUtils.getRandomString());
 		pedido.setValorTotalPedido(TestUtils.getRandomBigDecimal());
+		pedido.setItensPedido(Arrays.asList(montarItemPedidoDTO()));
 		return pedido;
+	}
+	
+	public ItemPedidoDTO montarItemPedidoDTO() {
+		ItemPedidoDTO item = new ItemPedidoDTO();
+		item.setCodigo(TestUtils.getRandomInteger());
+		item.setQuantidade(TestUtils.getRandomInteger());
+		item.setValor(TestUtils.getRandomBigDecimal());
+		item.setValorTotal(TestUtils.getRandomBigDecimal());
+		return item;
 	}
 
 }
