@@ -25,7 +25,10 @@ public class PedidoService {
 		
 		List<Pedido> pedidos = new ArrayList<>();
 		
-		CollectionUtils.addAll(pedidos, pedidosIterable);
+		if(pedidosIterable != null) {
+			CollectionUtils.addAll(pedidos, pedidosIterable);
+		}
+		
 		return new PedidoDTOMapper().converterDe(pedidos);
 	}
 	
