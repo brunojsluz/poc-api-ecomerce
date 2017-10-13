@@ -50,6 +50,17 @@ public class PedidoServiceTest {
 		Assert.assertTrue(CollectionUtils.isNotEmpty(listaPedidosDTO));
 		Assert.assertEquals(listaPedidosDTO.size(), 2);
 	}
+
+	@Test
+	public void deveRetornarNullQuandoNaoHouverPedidosCadastradorNoBanco() {
+		List<Pedido> listaPedidos = null;
+		
+		Mockito.when(dao.findAll()).thenReturn(listaPedidos);
+		
+		List<PedidoDTO> listaPedidosDTO = service.listarPedidos();
+		
+		Assert.assertNull(listaPedidosDTO);
+	}
 	
 	@Test
 	public void deveBuscarPedido() {

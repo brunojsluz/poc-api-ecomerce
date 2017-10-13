@@ -21,11 +21,13 @@ public class ItemService {
 	private ItemRepository dao;
 
 	public List<ItemDTO> listarItem() {
-		Iterable<Item> iterable = dao.findAll();
+		Iterable<Item> itensIterable = dao.findAll();
 
 		List<Item> itens = new ArrayList<Item>();
 		
-		CollectionUtils.addAll(itens, iterable);
+		if(itensIterable != null) {
+			CollectionUtils.addAll(itens, itensIterable);
+		}
 												
 		return new ItemDTOMapper().converterDe(itens);
 	}

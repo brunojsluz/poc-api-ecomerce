@@ -48,6 +48,17 @@ public class ItemServiceTest {
 		Assert.assertFalse(itens.isEmpty());
 		Assert.assertEquals(itens.size(), 2);
 	}
+
+	@Test
+	public void deveRetornarNullQuandoNaoHouverItensNoBanco() {
+		List<Item> listaItens = null;
+		
+		Mockito.when(dao.findAll()).thenReturn(listaItens);
+		
+		List<ItemDTO> itens = service.listarItem();
+		
+		Assert.assertNull(itens);
+	}
 	
 	@Test
 	public void deveBuscarItem() {
