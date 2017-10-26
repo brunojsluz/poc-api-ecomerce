@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +48,10 @@ public class ItemService {
 	}
 
 	public List<ItemDTO> buscarPorDescricao(String descricao) {
+		if(StringUtils.isEmpty(descricao)) {
+			return listarItem();
+		}
+
 		List<Item> listaItem = dao.findByDescricaoContainingIgnoreCase(descricao);
 		return new ItemDTOMapper().converterDe(listaItem);
 	}
