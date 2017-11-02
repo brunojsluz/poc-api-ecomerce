@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.api.dto.PedidoDTO;
 import br.com.api.service.PedidoService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/pedido")
 public class PedidoController {
@@ -38,17 +40,17 @@ public class PedidoController {
 	}
 	
 	@PutMapping
-	public void atualizarPedido(@RequestBody PedidoDTO pedidoDTO) {
+	public void atualizarPedido(@Valid @RequestBody PedidoDTO pedidoDTO) {
 		service.atualizarPedido(pedidoDTO);
 	}
 
 	@PostMapping
-	public void salvarPedido(@RequestBody PedidoDTO pedidoDTO) {
+	public void salvarPedido(@Valid @RequestBody PedidoDTO pedidoDTO) {
 		service.salvarPedido(pedidoDTO);
 	}
 	
 	@DeleteMapping
-	public void excluirPedido(@RequestBody PedidoDTO pedidoDTO) {
+	public void excluirPedido(@Valid @RequestBody PedidoDTO pedidoDTO) {
 		service.excluirPedido(pedidoDTO);
 	}
 	

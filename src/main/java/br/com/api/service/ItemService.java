@@ -2,6 +2,7 @@ package br.com.api.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -17,7 +18,7 @@ import br.com.api.mapper.ItemMapper;
 
 @Service
 public class ItemService {
-	
+
 	@Autowired
 	private ItemRepository dao;
 
@@ -25,22 +26,22 @@ public class ItemService {
 		Iterable<Item> itensIterable = dao.findAll();
 
 		List<Item> itens = new ArrayList<Item>();
-		
+
 		if(itensIterable != null) {
 			CollectionUtils.addAll(itens, itensIterable);
 		}
-												
+
 		return new ItemDTOMapper().converterDe(itens);
 	}
-	
+
 	public ItemDTO buscarItem(Integer codigo) {
 		Item item = dao.findByCodigo(codigo);
 		return new ItemDTOMapper().converterDe(item);
 	}
-	
+
 	public void alteraPrecoItem(AlteraPrecoDTO alteraPreco) {
 		Item item = dao.findByCodigo(alteraPreco.getCodigoItem());
-		
+
 		if(item != null) {
 			item.setValor(alteraPreco.getValor());
 			dao.save(item);

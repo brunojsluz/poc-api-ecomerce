@@ -9,6 +9,8 @@ import br.com.api.dto.AlteraPrecoDTO;
 import br.com.api.dto.ItemDTO;
 import br.com.api.service.ItemService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/item")
 public class ItemController {
@@ -32,22 +34,22 @@ public class ItemController {
 	}
 	
 	@PostMapping("/altera/preco")
-	public void alteraPrecoItem(@RequestBody AlteraPrecoDTO alteraPreco) {
+	public void alteraPrecoItem(@Valid @RequestBody AlteraPrecoDTO alteraPreco) {
 		service.alteraPrecoItem(alteraPreco);
 	}
 	
 	@PutMapping
-	public void alteraItem(@RequestBody ItemDTO itemDTO) {
+	public void alteraItem(@Valid @RequestBody ItemDTO itemDTO) {
 		service.alteraItem(itemDTO);
 	}
 	
 	@PostMapping
-	public void salvarItem(@RequestBody ItemDTO itemDTO) {
+	public void salvarItem(@Valid @RequestBody ItemDTO itemDTO) {
 		service.salvarItem(itemDTO);
 	}
 	
 	@DeleteMapping
-	public void escluirItem(@RequestBody ItemDTO itemDTO) {
+	public void escluirItem(@Valid @RequestBody ItemDTO itemDTO) {
 		service.excluirItem(itemDTO);
 	}
 }

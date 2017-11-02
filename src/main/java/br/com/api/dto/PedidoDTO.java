@@ -7,16 +7,30 @@ import java.util.List;
 
 import br.com.api.entidades.StatusPedidoEnum;
 
+import javax.validation.constraints.NotNull;
+
 public class PedidoDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Integer codigo;
+
+	@NotNull(message = "O cliente é obrigatório")
 	private String cliente;
+
+	@NotNull(message = "A data do pedido é obrigatória")
 	private Date dataPedido;
+
+	@NotNull(message = "O telefone é obrigatório")
 	private String telefone;
+
+	@NotNull(message = "O valor total do pedido é obrigatório")
 	private BigDecimal valorTotalPedido;
+
+	@NotNull(message = "O status do pedido é obrigatório")
 	private StatusPedidoEnum status;
+
+	@NotNull(message = "A liste de itens do pedido é obrigatória")
 	private List<ItemPedidoDTO> itensPedido;
 
 	public Integer getCodigo() {
