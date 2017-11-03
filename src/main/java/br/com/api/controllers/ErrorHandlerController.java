@@ -46,10 +46,10 @@ public class ErrorHandlerController {
         String valorInformado = fieldError.getRejectedValue() != null ? fieldError.getRejectedValue().toString() : null;
 
         StringBuilder builder = new StringBuilder();
-        builder.append("O valor informado foi: [");
-        builder.append(valorInformado);
-        builder.append("] - ");
         builder.append(fieldError.getDefaultMessage());
+        builder.append(". - O valor informado foi: [");
+        builder.append(valorInformado);
+        builder.append("]");
 
         return builder.toString();
     }
