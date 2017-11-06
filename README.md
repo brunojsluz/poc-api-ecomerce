@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/brunojsluz/poc-api-ecommerce.svg?branch=develop)](https://travis-ci.org/brunojsluz/poc-api-ecommerce)
+[![Coverage Status](https://coveralls.io/repos/github/brunojsluz/poc-api-ecommerce/badge.svg?branch=master)](https://coveralls.io/github/brunojsluz/poc-api-ecommerce?branch=master)
 
 ## POC API ECOMMERCE
 
