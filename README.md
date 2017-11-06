@@ -76,4 +76,4 @@ Exemplo de json para inserir um pedido usando o método `POST`:
 }
 ```
 ### 4. Justificativa e referencias
-O Framework spring boot foi usado por abstrair inicialmente parte da configuração e definição de dependências que os projetos Java exigem. Uma das vantagens seria a rapidez no desenvolvimento da aplicação. O Postgres foi escolhido por ser um SGDB muito conhecido no mercado e também por estar disponível em plataformas que suportam aplicações Java, cito o exemplo do [Heroku](https://www.heroku.com/).
+O Framework spring boot foi usado por abstrair inicialmente parte da configuração e definição de dependências que os projetos Java exigem. Uma das vantagens seria a rapidez no desenvolvimento da aplicação. O Postgres foi escolhido por ser um SGDB muito conhecido no mercado e também por estar disponível em plataformas que suportam aplicações Java, cito o exemplo do [Heroku](https://www.heroku.com/)
