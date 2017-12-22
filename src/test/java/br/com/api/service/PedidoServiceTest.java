@@ -2,10 +2,12 @@ package br.com.api.service;
 
 import static org.mockito.MockitoAnnotations.initMocks;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import br.com.api.exception.ErroInternoException;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -45,7 +47,7 @@ public class PedidoServiceTest {
 
 		Mockito.when(dao.findAll()).thenReturn(listaPedidos);
 		
-		List<PedidoDTO> listaPedidosDTO = service.listarPedidos();
+		List<PedidoDTO> listaPedidosDTO = service.listarPedidosV2();
 		
 		Assert.assertTrue(CollectionUtils.isNotEmpty(listaPedidosDTO));
 		Assert.assertEquals(listaPedidosDTO.size(), 2);
@@ -53,13 +55,13 @@ public class PedidoServiceTest {
 
 	@Test
 	public void deveRetornarNullQuandoNaoHouverPedidosCadastradorNoBanco() {
-		List<Pedido> listaPedidos = null;
+		List<Pedido> listaPedidos = new ArrayList<>();
 		
 		Mockito.when(dao.findAll()).thenReturn(listaPedidos);
 		
-		List<PedidoDTO> listaPedidosDTO = service.listarPedidos();
+		List<PedidoDTO> listaPedidosDTO = service.listarPedidosV2();
 		
-		Assert.assertNull(listaPedidosDTO);
+		Assert.assertTrue(listaPedidosDTO.isEmpty());
 	}
 	
 	@Test
@@ -86,21 +88,21 @@ public class PedidoServiceTest {
 		Pedido pedido = montaPedido();
 		Mockito.when(dao.findByCodigo(codigo)).thenReturn(pedido);
 		
-		service.fecharPedido(codigo );
+		service.fecharPedidoV2(codigo );
 		
 		Mockito.verify(dao).save(pedidoCapture.capture());
 		
 		Assert.assertEquals(pedidoCapture.getValue().getStatus(), StatusPedidoEnum.FECHADO);
 	}
 	
-	@Test
+	@Test(expected = ErroInternoException.class)
 	public void naoDeveFecharOPedidoCasoOPedidoNaoSejaEncontrado() {
 		Integer codigo = TestUtils.getRandomInteger();
 		
 		Pedido pedido = null;
 		Mockito.when(dao.findByCodigo(codigo)).thenReturn(pedido);
 		
-		service.fecharPedido(codigo );
+		service.fecharPedidoV2(codigo );
 		
 		Mockito.verify(dao, Mockito.never()).save(pedidoCapture.capture());
 	}

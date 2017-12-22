@@ -3,8 +3,11 @@ package br.com.api.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
+import br.com.api.exception.ErroInternoException;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,7 @@ public class ItemService {
 	@Autowired
 	private ItemRepository dao;
 
+	@Deprecated
 	public List<ItemDTO> listarItem() {
 		Iterable<Item> itensIterable = dao.findAll();
 
@@ -34,23 +38,45 @@ public class ItemService {
 		return new ItemDTOMapper().converterDe(itens);
 	}
 
+	public List<ItemDTO> listarItemV2() {
+		List<ItemDTO> itens = new ArrayList<>();
+
+		dao.findAll().forEach(item -> itens.add(new ItemDTOMapper().converterDe(item)));
+
+		return itens;
+	}
+
 	public ItemDTO buscarItem(Integer codigo) {
 		Item item = dao.findByCodigo(codigo);
 		return new ItemDTOMapper().converterDe(item);
 	}
 
-	public void alteraPrecoItem(AlteraPrecoDTO alteraPreco) {
+	@Deprecated
+	public Boolean alteraPrecoItem(AlteraPrecoDTO alteraPreco) {
 		Item item = dao.findByCodigo(alteraPreco.getCodigoItem());
 
 		if(item != null) {
 			item.setValor(alteraPreco.getValor());
 			dao.save(item);
+			return Boolean.TRUE;
+		} else {
+			throw new ErroInternoException("Não foi possivel alterar o valor do item.");
 		}
+	}
+
+	public Boolean alteraPrecoItemV2(AlteraPrecoDTO alteraPreco) {
+		return Optional.ofNullable(dao.findByCodigo(alteraPreco.getCodigoItem()))
+				.map(item -> {
+					item.setValor(alteraPreco.getValor());
+					dao.save(item);
+					return Boolean.TRUE;
+				})
+				.orElseThrow(() -> new ErroInternoException("Não foi possivel alterar o valor do item."));
 	}
 
 	public List<ItemDTO> buscarPorDescricao(String descricao) {
 		if(StringUtils.isEmpty(descricao)) {
-			return listarItem();
+			return listarItemV2();
 		}
 
 		List<Item> listaItem = dao.findByDescricaoContainingIgnoreCase(descricao);

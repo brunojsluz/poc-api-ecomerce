@@ -2,9 +2,11 @@ package br.com.api.service;
 
 import static org.mockito.MockitoAnnotations.initMocks;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import br.com.api.exception.ErroInternoException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,21 +45,21 @@ public class ItemServiceTest {
 
 		Mockito.when(dao.findAll()).thenReturn(listaItens);
 
-		List<ItemDTO> itens = service.listarItem();
+		List<ItemDTO> itens = service.listarItemV2();
 
 		Assert.assertFalse(itens.isEmpty());
 		Assert.assertEquals(itens.size(), 2);
 	}
 
 	@Test
-	public void deveRetornarNullQuandoNaoHouverItensNoBanco() {
-		List<Item> listaItens = null;
+	public void deveRetornarListaVaziaQuandoNaoHouverItensNoBanco() {
+		List<Item> listaItens = new ArrayList<>();
 		
 		Mockito.when(dao.findAll()).thenReturn(listaItens);
 		
-		List<ItemDTO> itens = service.listarItem();
+		List<ItemDTO> itens = service.listarItemV2();
 		
-		Assert.assertNull(itens);
+		Assert.assertTrue(itens.isEmpty());
 	}
 	
 	@Test
@@ -82,21 +84,21 @@ public class ItemServiceTest {
 		Item item = montaItem();
 		Mockito.when(dao.findByCodigo(alteraPreco.getCodigoItem())).thenReturn(item);
 		
-		service.alteraPrecoItem(alteraPreco);
+		service.alteraPrecoItemV2(alteraPreco);
 		
 		Mockito.verify(dao).save(itemCapture.capture());
 		
 		Assert.assertEquals(itemCapture.getValue().getValor(), alteraPreco.getValor());
 	}
 	
-	@Test
+
 	public void naoDeveAlterarPrecoDoItemQuandoItemNaoForEncontrado() {
 		AlteraPrecoDTO alteraPreco = montaPrecoITem();
 		
 		Item item = null;
 		Mockito.when(dao.findByCodigo(alteraPreco.getCodigoItem())).thenReturn(item);
 		
-		service.alteraPrecoItem(alteraPreco);
+		service.alteraPrecoItemV2(alteraPreco);
 		
 		Mockito.verify(dao, Mockito.never()).save(itemCapture.capture());
 	}

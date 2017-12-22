@@ -3,10 +3,18 @@ package br.com.api.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.NotNull;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AlteraPrecoDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -18,20 +26,5 @@ public class AlteraPrecoDTO implements Serializable {
 	@NumberFormat(pattern = "#.###,##")
 	private BigDecimal valor;
 
-	public Integer getCodigoItem() {
-		return codigoItem;
-	}
-
-	public void setCodigoItem(Integer codigoItem) {
-		this.codigoItem = codigoItem;
-	}
-
-	public BigDecimal getValor() {
-		return valor;
-	}
-
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
-	}
 
 }

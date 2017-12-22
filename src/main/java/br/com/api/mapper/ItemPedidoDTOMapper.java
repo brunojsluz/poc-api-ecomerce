@@ -13,13 +13,13 @@ public class ItemPedidoDTOMapper extends AbstractMapper<ItemPedido, ItemPedidoDT
 			return null;
 		}
 		
-		ItemPedidoDTO para  = new ItemPedidoDTO();
-		para.setCodigo(de.getCodigo());
-		para.setItem(converterItem(de.getItem()));
-		para.setQuantidade(de.getQuantidade());
-		para.setValor(de.getValor());
-		para.setValorTotal(de.getValorTotal());
-		return para;
+		return ItemPedidoDTO.builder()
+		.codigo(de.getCodigo())
+		.item(converterItem(de.getItem()))
+		.quantidade(de.getQuantidade())
+		.valor(de.getValor())
+		.valorTotal(de.getValorTotal())
+		.build();
 	}
 
 	private ItemDTO converterItem(Item item) {

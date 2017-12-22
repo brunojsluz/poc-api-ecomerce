@@ -68,6 +68,18 @@
 			<version>4.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.18</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jason-goodwin</groupId>
+			<artifactId>better-monads</artifactId>
+			<version>0.4.1</version>
+		</dependency>
+
 	</dependencies>
 	
 	<build>

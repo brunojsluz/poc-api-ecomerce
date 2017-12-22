@@ -15,16 +15,16 @@ public class PedidoDTOMapper extends AbstractMapper<Pedido, PedidoDTO>{
 			return null;
 		}
 		
-		PedidoDTO para = new PedidoDTO();
-		para.setCliente(de.getCliente());
-		para.setCodigo(de.getCodigo());
-		para.setDataPedido(de.getDataPedido());
-		para.setItensPedido(converterItemPedido(de.getItensPedido()));
-		para.setStatus(de.getStatus());
-		para.setTelefone(de.getTelefone());
-		para.setValorTotalPedido(de.getValorTotalPedido());
+		return PedidoDTO.builder()
+		.cliente(de.getCliente())
+		.codigo(de.getCodigo())
+		.dataPedido(de.getDataPedido())
+		.itensPedido(converterItemPedido(de.getItensPedido()))
+		.status(de.getStatus())
+		.telefone(de.getTelefone())
+		.valorTotalPedido(de.getValorTotalPedido())
+		.build();
 		
-		return para;
 	}
 
 	private List<ItemPedidoDTO> converterItemPedido(List<ItemPedido> itensPedido) {

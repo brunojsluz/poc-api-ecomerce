@@ -10,13 +10,13 @@ public class ItemDTOMapper extends AbstractMapper<Item, ItemDTO> {
 		if(de == null) {
 			return null;
 		}
-		
-		ItemDTO para = new ItemDTO();
-		para.setCodigo(de.getCodigo());
-		para.setDescricao(de.getDescricao());
-		para.setObservacao(de.getObservacao());
-		para.setValor(de.getValor());
-		return para;
+
+		return ItemDTO.builder()
+		.codigo(de.getCodigo())
+		.descricao(de.getDescricao())
+		.observacao(de.getObservacao())
+		.valor(de.getValor())
+		.build();
 	}
 
 }
