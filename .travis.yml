@@ -5,3 +5,11 @@ jdk:
 
 after_success:
   - mvn clean test jacoco:report coveralls:report
+
+addons:
+  sonarcloud:
+    organization: "brunojsluz"
+    token:
+      secure: sonar_key
+script:
+  - sonar-scanner
