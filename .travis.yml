@@ -8,7 +8,7 @@ after_success:
 
 addons:
   sonarcloud:
-    organization: "brunojsluz"
+    organization: "brunojsluz-github"
     token:
       secure: sonar_key
 script:
